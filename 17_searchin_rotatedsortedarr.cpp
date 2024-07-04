@@ -8,47 +8,84 @@ using namespace std;
 
 // Approach: We find index of pivot element using a function first. Then we check if k>=arr[pivot index] and k<=arr[n-1], is yes implement binary search in later part ie pivot index to n-1 and if not, implement it fom 0 to pivot-index -1
 
-int findpivot(vector<int> &nums){
-    int low =0, high = nums.size()-1;
-    int mid = low + (high-low)/2;
-    while(low<high){
+int findpivot(vector<int> &nums)
+{
+    int low = 0, high = nums.size() - 1;
+    int mid = low + (high - low) / 2;
+    while (low < high)
+    {
         if (nums[mid] >= nums[0])
-        low = mid+1;
+            low = mid + 1;
         else
-        high = mid;
-        mid = low + (high-low)/2;
+            high = mid;
+        mid = low + (high - low) / 2;
     }
     return low;
 }
-int binarysearch(vector<int>& arr, int s, int e, int k)
+int binarysearch(vector<int> &arr, int s, int e, int k)
 {
-    int low=s,high=e;
-    int mid = low + (high-low)/2;
-    while(low<=high)
+    int low = s, high = e;
+    int mid = low + (high - low) / 2;
+    while (low <= high)
     {
-        if (arr[mid]==k)
+        if (arr[mid] == k)
         {
             return mid;
         }
-        else if (arr[mid]>k)
+        else if (arr[mid] > k)
         {
-            high=mid-1;
+            high = mid - 1;
         }
-        else {
-            low = mid+1;
+        else
+        {
+            low = mid + 1;
         }
-        mid = low + (high-low)/2;
+        mid = low + (high - low) / 2;
     }
     return -1;
 }
 
-
-int search(vector<int>& arr, int n, int k)
+int search(vector<int> &arr, int n, int k)
 {
     int pivot_index = findpivot(arr);
-    if (k>=arr[pivot_index]&&k<=arr[n-1])
-    return binarysearch(arr, pivot_index, n-1, k);
+    if (k >= arr[pivot_index] && k <= arr[n - 1])
+        return binarysearch(arr, pivot_index, n - 1, k);
     else
-    return binarysearch(arr, 0, pivot_index-1, k);
+        return binarysearch(arr, 0, pivot_index - 1, k);
 
+    // or simply :
+    //  return binarySearchrecursive(arr,0,n,k);
+}
+
+// Recursive Approach
+int binarySearchrecursive(vector<int> &arr, int start, int end, int k)
+{
+    if (start > end)
+    {
+        return -1;
+    }
+    int mid = start + (end - start) / 2;
+    if (arr[mid] == k)
+    {
+        return mid;
+    }
+    else if (arr[mid] >= arr[0] && k < arr[0])
+    {
+        return binarySearchrecursive(arr, mid + 1, end, k);
+    }
+    else if (arr[mid] < arr[0] && k >= arr[0])
+    {
+        return binarySearchrecursive(arr, start, mid - 1, k);
+    }
+    else
+    {
+        if (k > arr[mid])
+        {
+            binarySearchrecursive(arr, mid + 1, end, k);
+        }
+        else if (k < arr[mid])
+        {
+            binarySearchrecursive(arr, start, mid - 1, k);
+        }
+    }
 }

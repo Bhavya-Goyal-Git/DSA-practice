@@ -1,0 +1,5 @@
+#ignoring excel sheets
+*.xlsx
+
+#ignoring compiled codes
+*.exe
