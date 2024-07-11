@@ -3,3 +3,6 @@
 
 #ignoring compiled codes
 *.exe
+
+#ignoring vscode folder
+.vscode/
