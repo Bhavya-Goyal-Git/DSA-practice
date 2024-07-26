@@ -1,8 +1,15 @@
-#ignoring excel sheets
+#ignoring excel sheets, text files
 *.xlsx
+*.txt
 
 #ignoring compiled codes
 *.exe
 
 #ignoring vscode folder
 .vscode/
+
+#ignoring test case generations
+*.py
+
+#ignoring temp trials
+temp.cpp
