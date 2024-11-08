@@ -3,7 +3,7 @@ using namespace std;
 
 // HEAP is a non linear Data structure. It is a Complete Binary Tree (A tree in which each level has to be fully filled before moving to next level and insertion in a level always begins from left end similar to level order traveral) with special heap properties. It can be of 2 types, max heap and min heap.
 // In our implementation of heap, we are represting it using an array. If we assign numbers from 1 to the root and so on as per level order way to the tree, the order we obtain can be stored in an array with assigned numbers as indices (yes the 0 index is to set empty). A benifit of this numbering is that for any index 'i' (or for any node) ,its left child is present at 2*i th index and right child at 2*i +1 th index. Also, similarly, the parent of any node is present at i/2 th index.
-// Note that if 0 based indexing is done, left child is at 2i+1 and right at 2i+2
+// Note that if 0 based indexing is done, left child is at 2i+1 and right at 2i+2 and parent at (i-1)/2
 // The last most unfilled index shall then represent the position of insertion.
 // To implement it with an array, we will also need a size variable, that tracks current number of elements in heap. At time of insertion, we first increment this and then add element in array at this position.
 
